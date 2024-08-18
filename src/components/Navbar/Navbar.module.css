@@ -1,0 +1,53 @@
+.wrapper {
+    background-color: var(--background-secondary);
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+    gap: 8px;
+    padding-left: 8px;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.link {
+    height: 100%;
+    width: 80px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.link:hover {
+    background-color: var(--background-accent);
+}
+
+.active {
+    background-color: var(--background-main);
+}
+
+.buttons {
+    position: absolute;
+    right: 32px;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    gap: 8px;
+}
+
+.buttons button {
+    font-size: 16px;
+    height: 100%;
+    color: var(--white);
+    width: 80px;
+    border-radius: 16px;
+}
+
+.buttons button:hover {
+    background-color: var(--accent);
+}
