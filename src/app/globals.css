@@ -1,12 +1,13 @@
 :root {
   --white: #FFFFFF;
-  --background-main: #EAF0F1;
-  --background-secondary: #dce6e9;
+  --background-main: #dce6e9;
+  --background-secondary: #EAF0F1;
   --background-accent: #e6eff2;
   --text-main: #000000;
   --text-secondary: #FFFFFF;
   --main: rgb(100,116,240);
   --accent: rgb(126, 138, 231);
+  --error: red;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +31,7 @@ button {
   border: none;
   cursor: pointer;
   background-color: var(--main);
+  color: var(--white);
 }
 
 html,
