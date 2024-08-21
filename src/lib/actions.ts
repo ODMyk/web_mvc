@@ -1,6 +1,8 @@
 "use server"
 
 import { LoginSchema, RegisterSchema } from "@/lib/schemes";
+import { signOut, signIn } from "./auth";
+import prisma from "./db";
 
 export async function register(_: any, rawData: FormData) {
     const data = Object.fromEntries(rawData) as unknown as typeof RegisterSchema._type;
@@ -15,9 +17,15 @@ export async function register(_: any, rawData: FormData) {
 export async function login(_ :any, rawData: FormData) {
     const data = Object.fromEntries(rawData) as unknown as typeof LoginSchema._type;
     const validationResult = await LoginSchema.safeParseAsync(data);
-    if (!validationResult.success || data.email.length < 5 || data.password.length < 8) {
-        return {message: "Wrong credentials"}
+    if (!validationResult.success) {
+        return {error: {message: "Wrong credentials"}}
     }
+}
 
-    console.log("Successfully signed in")
+export async function logout() {
+    await signOut();
+}
+
+export async function loginGoogle() {
+ await signIn('google');
 }

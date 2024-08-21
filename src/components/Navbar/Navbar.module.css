@@ -14,23 +14,6 @@
     flex-direction: row;
 }
 
-.link {
-    height: 100%;
-    width: 80px;
-    font-size: 16px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.link:hover {
-    background-color: var(--background-accent);
-}
-
-.active {
-    background-color: var(--background-main);
-}
-
 .buttons {
     position: absolute;
     right: 32px;

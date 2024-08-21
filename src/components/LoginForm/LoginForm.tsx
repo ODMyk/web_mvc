@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useState,
 } from "react";
-import {login} from "@/lib/actions";
+import {login, loginGoogle} from "@/lib/actions";
 import styles from "./LoginForm.module.css";
 import Link from "next/link";
 
@@ -58,7 +58,11 @@ export default function LoginForm() {
           Sign In
         </button>
       </form>
-      <button className={styles.link}>Continue with Google</button>
+      <form action={loginGoogle}>
+        <button type="submit" className={styles.link}>
+          Continue with Google
+        </button>
+      </form>
       <Link className={styles.link} href={"/register"}>
         {"I don't have an account"}
       </Link>

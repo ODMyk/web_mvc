@@ -1,51 +1,30 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import styles from "./Navbar.module.css";
 import Logo from "@/components/Logo/Logo";
-import {usePathname} from "next/navigation";
+import {auth} from "@/lib/auth";
+import Links from "../Links/Links";
+import {logout} from "@/lib/actions";
 
-interface ISession {
-  user?: {isAdmin: boolean};
-}
-
-// const session: ISession = {user: {isAdmin: true}};
-const session: ISession = {};
-
-const ROUTES = [
-  {title: "Home", route: "/"},
-  {title: "Places", route: "/places"},
-  {title: "Tags", route: "/tags"},
-];
-
-export default function Navbar() {
-  const path = usePathname();
+export default async function Navbar() {
+  const session = await auth();
+  console.log(session);
   return (
     <nav className={styles.wrapper}>
       <Logo />
       <div className={styles.container}>
-        {ROUTES.map(({title, route}) => (
-          <Link
-            className={`${styles.link} ${path === route ? styles.active : ""}`}
-            href={route}
-            key={title}
-          >
-            {title}
-          </Link>
-        ))}
-        {session.user?.isAdmin && (
-          <Link
-            className={`${styles.link} ${
-              path === "/admin" ? styles.active : ""
-            }`}
-            href={"/admin"}
-          >
-            Admin
-          </Link>
-        )}
+        <Links session={session} />
       </div>
       <div className={styles.buttons}>
-        {session.user ? <button>Logout</button> : <button>Sign In</button>}
+        {session?.user ? (
+          <form action={logout}>
+            <button>Logout</button>
+          </form>
+        ) : (
+          <Link href="/login">
+            <button>Sign In</button>
+          </Link>
+        )}
       </div>
     </nav>
   );
