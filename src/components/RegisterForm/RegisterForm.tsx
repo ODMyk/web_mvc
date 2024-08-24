@@ -1,27 +1,25 @@
-"use client";
+'use client';
 import React, {
   startTransition,
   useActionState,
   useCallback,
   useState,
-} from "react";
-import {register} from "@/lib/actions";
-import styles from "./RegisterForm.module.css";
-import Link from "next/link";
+} from 'react';
+import {loginGoogle, register} from '@/lib/actions';
+import styles from './RegisterForm.module.css';
+import Link from 'next/link';
 
 export default function RegisterForm() {
   const [formState, formAction, pending] = useActionState(register, null);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const onSubmit: React.FormEventHandler = useCallback(
-    (e) => {
+    e => {
       e.preventDefault();
       const formData = new FormData(e.target);
       startTransition(() => formAction(formData));
-      setPassword("");
-      setPasswordConfirm("");
     },
     [formAction],
   );
@@ -35,9 +33,16 @@ export default function RegisterForm() {
             <div className={styles.field}>
               <label className={styles.label} htmlFor="usename">
                 Username
+                {formState?.usernameConficlt && (
+                  <span className={styles.error}>Already in use</span>
+                )}
               </label>
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  formState?.usernameConficlt || formState?.username
+                    ? styles.errorInput
+                    : ''
+                }`}
                 name="username"
                 type="text"
                 placeholder="Mystic Traveller"
@@ -49,9 +54,16 @@ export default function RegisterForm() {
             <div className={styles.field}>
               <label className={styles.label} htmlFor="email">
                 Email
+                {formState?.emailConflict && (
+                  <span className={styles.error}>Already in use</span>
+                )}
               </label>
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  formState?.emailConflict || formState?.email
+                    ? styles.errorInput
+                    : ''
+                }`}
                 name="email"
                 type="text"
                 placeholder="your.mail@example.com"
@@ -65,7 +77,9 @@ export default function RegisterForm() {
                 Password
               </label>
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  formState?.password ? styles.errorInput : ''
+                }`}
                 name="password"
                 type="password"
                 placeholder="Describe Schema"
@@ -78,7 +92,9 @@ export default function RegisterForm() {
                 Confirm Password
               </label>
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  formState?.passwordConfirm ? styles.errorInput : ''
+                }`}
                 name="passwordConfirm"
                 type="password"
                 placeholder="Repeat your password"
@@ -109,8 +125,12 @@ export default function RegisterForm() {
           Sign Up
         </button>
       </form>
-      <button className={styles.link}>Continue with Google</button>
-      <Link className={styles.link} href={"/login"}>
+      <form action={loginGoogle} style={{width: '100%'}}>
+        <button type="submit" className={styles.link}>
+          Continue with Google
+        </button>
+      </form>
+      <Link className={styles.link} href={'/login'}>
         I already have an account
       </Link>
     </div>

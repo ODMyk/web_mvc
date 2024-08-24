@@ -14,23 +14,29 @@
     flex-direction: row;
 }
 
-.buttons {
-    position: absolute;
-    right: 32px;
+.buttonWrapper {
+    flex: 1;
     display: flex;
-    flex-direction: row;
-    height: 40px;
-    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding: 0 12px;
 }
 
-.buttons button {
+.buttonWrapper button {
     font-size: 16px;
-    height: 100%;
-    color: var(--white);
+    height: 80%;
     width: 80px;
     border-radius: 16px;
 }
 
-.buttons button:hover {
+.buttonWrapper button:hover {
     background-color: var(--accent);
+}
+
+.full {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }

@@ -48,12 +48,13 @@
     margin-top: 4px;
 }
 
-.label {
+.label, .error {
     padding-left: 12px;
 }
 
 .error {
     color: var(--error);
+    margin-bottom: -12px;
 }
 
 .form {

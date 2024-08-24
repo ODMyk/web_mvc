@@ -40,7 +40,9 @@
 
 .input {
     background-color: var(--background-main);
-    border: none;
+    border: solid;
+    border-width: 2px;
+    border-color: transparent;
     border-radius: 12px;
     padding: 8px;
     margin-top: 4px;
@@ -69,7 +71,7 @@
 }
 
 .tips li {
-    margin-bottom: 34px;
+    margin-bottom: 39px;
     font-size: 14px;
 }
 
@@ -83,4 +85,15 @@
 
 .wrapper button:hover, .link:hover {
     background-color: var(--accent);
+}
+
+.errorInput {
+    border: solid;
+    border-width: 2px;
+    border-color: var(--error);
+}
+
+span.error {
+    font-size: 10px;
+    margin-left: 12px;
 }
