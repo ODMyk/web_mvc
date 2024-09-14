@@ -1,13 +1,15 @@
 'use server';
 
-import {LoginSchema, RegisterSchema} from '@/lib/schemas';
-import {signOut, signIn} from './auth';
-import prisma from './db';
 import bcrypt from 'bcryptjs';
 import {AuthError} from 'next-auth';
+
+import {LoginSchema, RegisterSchema} from '@/lib/schemas';
+
+import {signIn, signOut} from './auth';
+import prisma from './db';
 import {DEFAULT_REDIRECT} from './routes';
 
-export async function register(_: any, rawData: FormData) {
+export async function register(_, rawData: FormData) {
   const data = Object.fromEntries(
     rawData,
   ) as unknown as typeof RegisterSchema._type;
@@ -41,7 +43,7 @@ export async function register(_: any, rawData: FormData) {
   });
 }
 
-export async function login(_: any, rawData: FormData) {
+export async function login(_, rawData: FormData) {
   const data = Object.fromEntries(
     rawData,
   ) as unknown as typeof LoginSchema._type;

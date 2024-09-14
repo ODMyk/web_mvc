@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import React, {useState} from 'react';
-import styles from './Navbar.module.css';
+
+import Links from '@/components/Links/Links';
 import Logo from '@/components/Logo/Logo';
+import ProfileButton from '@/components/ProfileButton/ProfileButton';
 import {auth} from '@/lib/auth';
-import Links from '../Links/Links';
-import ProfileButton from '../ProfileButton/ProfileButton';
+
+import styles from './Navbar.module.css';
 
 export default async function Navbar() {
   const session = await auth();

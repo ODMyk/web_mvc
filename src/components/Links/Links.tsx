@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
-import React, {useEffect} from 'react';
-import styles from './Links.module.css';
 import {redirect, usePathname} from 'next/navigation';
 import {Session} from 'next-auth';
+import React, {useEffect} from 'react';
+
+import styles from './Links.module.css';
 
 const ROUTES = [
   {title: 'Home', route: '/'},

@@ -1,4 +1,4 @@
-import {auth} from '@/lib/auth';
+import {auth as _auth} from '@/lib/auth';
 import {
   adminRoutes,
   apiAuthPrefix,
@@ -8,7 +8,7 @@ import {
   publicRoutes,
 } from '@/lib/routes';
 
-export default auth(req => {
+export default _auth(req => {
   const {nextUrl, auth} = req;
   const isLoggedIn = !!auth;
   const isAdmin = !!auth?.user?.isAdmin;

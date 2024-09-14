@@ -1,10 +1,12 @@
 'use client';
 import {Session} from 'next-auth';
 import React, {useCallback, useState} from 'react';
-import styles from './ProfileButton.module.css';
-import {logout} from '@/lib/actions';
-import SettignsIcon from '@/assets/icons/SettignsIcon';
+
 import LogoutIcon from '@/assets/icons/LogoutIcon';
+import SettignsIcon from '@/assets/icons/SettignsIcon';
+import {logout} from '@/lib/actions';
+
+import styles from './ProfileButton.module.css';
 
 export interface ProfileButtonIE {
   session?: Session;

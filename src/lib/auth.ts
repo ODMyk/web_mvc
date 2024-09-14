@@ -1,8 +1,9 @@
-import NextAuth, {Session} from 'next-auth';
-import google from 'next-auth/providers/google';
-import prisma from './db';
-import credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
+import NextAuth, {DefaultSession} from 'next-auth';
+import credentialsProvider from 'next-auth/providers/credentials';
+import google from 'next-auth/providers/google';
+
+import prisma from './db';
 
 const login = async (credentials: Partial<Record<string, unknown>>) => {
   const user = await prisma.user.findFirst({
@@ -26,7 +27,7 @@ const login = async (credentials: Partial<Record<string, unknown>>) => {
 export const {handlers, signIn, signOut, auth} = NextAuth({
   providers: [
     google,
-    credentials({
+    credentialsProvider({
       async authorize(credentials) {
         try {
           const user = await login(credentials);

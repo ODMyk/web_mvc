@@ -1,13 +1,15 @@
 'use client';
+import Link from 'next/link';
 import React, {
   startTransition,
   useActionState,
   useCallback,
   useState,
 } from 'react';
+
 import {login, loginGoogle} from '@/lib/actions';
+
 import styles from './LoginForm.module.css';
-import Link from 'next/link';
 
 export default function LoginForm() {
   const [formState, formAction, pending] = useActionState(login, null);
@@ -16,7 +18,7 @@ export default function LoginForm() {
   const onSubmit: React.FormEventHandler = useCallback(
     e => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.target as unknown as HTMLFormElement);
       startTransition(() => formAction(formData));
       setPassword('');
     },

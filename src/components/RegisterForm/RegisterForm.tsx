@@ -1,13 +1,15 @@
 'use client';
+import Link from 'next/link';
 import React, {
   startTransition,
   useActionState,
   useCallback,
   useState,
 } from 'react';
+
 import {loginGoogle, register} from '@/lib/actions';
+
 import styles from './RegisterForm.module.css';
-import Link from 'next/link';
 
 export default function RegisterForm() {
   const [formState, formAction, pending] = useActionState(register, null);
@@ -18,7 +20,7 @@ export default function RegisterForm() {
   const onSubmit: React.FormEventHandler = useCallback(
     e => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.target as unknown as HTMLFormElement);
       startTransition(() => formAction(formData));
     },
     [formAction],
