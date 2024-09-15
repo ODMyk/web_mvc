@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import NextAuth, {DefaultSession} from 'next-auth';
+import NextAuth from 'next-auth';
 import credentialsProvider from 'next-auth/providers/credentials';
 import google from 'next-auth/providers/google';
 
@@ -17,6 +17,7 @@ const login = async (credentials: Partial<Record<string, unknown>>) => {
     credentials.password as string,
     user.password!,
   );
+
   if (!isPasswordCorrect) {
     throw 'Wrong credentials';
   }

@@ -38,8 +38,9 @@ export async function register(_, rawData: FormData) {
   });
 
   await signIn('credentials', {
-    username: data.username,
+    email: data.email,
     password: data.password,
+    redirectTo: DEFAULT_REDIRECT,
   });
 }
 
